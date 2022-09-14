@@ -14,6 +14,7 @@ public class ServiceAhorcado {
 
         System.out.println("ingrese una cantidad de jugadas maximas");
         ahorcado.setIntentos(leer.nextInt());
+        ahorcado.setEncontradas(0);
 
         String[] buscar = new String[palabra.length()];
         String[] frase = new String[palabra.length()];
@@ -25,7 +26,7 @@ public class ServiceAhorcado {
         }
 
         ahorcado.setBuscar(buscar);
-
+        ahorcado.setErrados(0);
         ahorcado.setEncontradas(0);
 
     }
@@ -48,7 +49,7 @@ public class ServiceAhorcado {
                 encontrado = true;
                 System.out.println(" numero de letras(encontradas, faltantes): "
                         + ahorcado.getEncontradas() + " , " + (ahorcado.getBuscar().length - ahorcado.getEncontradas()));
-                System.out.println(" el numero de oportunidades restantes es : " + (ahorcado.getIntentos()- ahorcado.getErrados()) );
+                System.out.println(" el numero de oportunidades restantes es : " + (ahorcado.getIntentos() - ahorcado.getErrados()));
             }
 
         }
@@ -57,25 +58,25 @@ public class ServiceAhorcado {
             System.out.println(" numero de letras(encontradas, faltantes): "
                     + ahorcado.getEncontradas() + " , " + (ahorcado.getBuscar().length - ahorcado.getEncontradas()));
             System.out.println(" la letra ingresada no pertenece a la palabra");
-            System.out.println(" el numero de oportunidades restantes es : " + (ahorcado.getIntentos()- ahorcado.getErrados()) );
+            System.out.println(" el numero de oportunidades restantes es : " + (ahorcado.getIntentos() - ahorcado.getErrados()));
         }
 
     }
 
-    public void juego(Ahorcado ahorcado){
-       
+    public void juego(Ahorcado ahorcado) {
+             crearJuego(ahorcado);
         do {
-        crearJuego(ahorcado);
-        longitud(ahorcado);
-        buscarletra(ahorcado);
-        }while(ahorcado.getErrados()< ahorcado.getIntentos()&& ahorcado.getEncontradas()< ahorcado.getBuscar().length );
-       
-        if ( ahorcado.getErrados()== ahorcado.getIntentos()){
-            
+           
+            longitud(ahorcado);
+            buscarletra(ahorcado);
+        } while (ahorcado.getErrados() < ahorcado.getIntentos() && ahorcado.getEncontradas() < ahorcado.getBuscar().length);
+
+        if (ahorcado.getErrados() == ahorcado.getIntentos()) {
+
             System.out.println("Lo sentimos, no hay más oportunidades");
-        }else{
+        } else {
             System.out.println(" usted ha descubierto la palabra");
         }
     }
-    
+
 }
